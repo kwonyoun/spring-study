@@ -17,9 +17,9 @@ public class RateDiscountPolicyTest {
         //given
         Member member = new Member(1L, "윤진VIP", Grade.Vip);
         //when
-        int discount = rateDiscountPolicy.discount(member, 10000);
+        int discount = rateDiscountPolicy.discount(member, 15000);
         //then
-        Assertions.assertThat(discount).isEqualTo(1000);
+        Assertions.assertThat(discount).isEqualTo(1500);
     }
 
     @Test

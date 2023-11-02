@@ -8,7 +8,6 @@ import hello.core.AppConfig;
 
 public class MemberServiceTest {
 
-    
     MemberService memberService;
     @BeforeEach
     public void BeforeEach(){
@@ -16,10 +15,8 @@ public class MemberServiceTest {
         memberService = appConfig.memberService();
     }
 
-
     @Test
     void join(){
-
         //given
         Member member =  new Member(1L, "윤진test", Grade.Vip);
 
@@ -30,5 +27,4 @@ public class MemberServiceTest {
         //then
         Assertions.assertThat(member).isEqualTo(findMember);
     }
-    
 }

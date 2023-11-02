@@ -14,6 +14,7 @@ public class OrderServiceTest {
 
     MemberService memberService;
     OrderService orderService;
+    
     @BeforeEach
     public void BeforeEach(){
         AppConfig appConfig = new AppConfig();
@@ -31,5 +32,4 @@ public class OrderServiceTest {
         Order order = orderService.creatOrder(memberId, "카메라", 10000);
         Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
     }
-    
 }
