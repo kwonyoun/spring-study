@@ -8,8 +8,14 @@ import hello.core.member.MemoryMemberRepositrory;
 
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepositrory memberRepositrory = new MemoryMemberRepositrory();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    //인터페이스에만 의존한다. 
+    //구체적인 클래스는 전혀 모른다. AppConfig에서 설정한다. 
+    private final MemberRepositrory memberRepositrory;
+    private final DiscountPolicy discountPolicy;
+    public OrderServiceImpl(MemberRepositrory memberRepositrory, DiscountPolicy discountPolicy) {
+        this.memberRepositrory = memberRepositrory;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order creatOrder(Long memberId, String itemName, int itemPrice) {
