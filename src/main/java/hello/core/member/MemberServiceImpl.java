@@ -6,20 +6,20 @@ public class MemberServiceImpl implements MemberService {
     //MemoryMemberRepository에 대한 코드는 없다.
     //MemberRepositrory 인터페이스만 있다. 즉, 추상화에만 의존한다. 
     //생성자 주입
-    private final MemberRepositrory memberRepositrory;
-    public MemberServiceImpl(MemberRepositrory memberRepositrory) {
-        this.memberRepositrory = memberRepositrory;
+    private final MemberRepository memberRepository;
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
     
 
     @Override
     public void join(Member member) {
-        memberRepositrory.save(member);
+        memberRepository.save(member);
     }
 
     @Override
     public Member findMember(Long memberId) {
-        return memberRepositrory.findById(memberId);
+        return memberRepository.findById(memberId);
     }
     
 }

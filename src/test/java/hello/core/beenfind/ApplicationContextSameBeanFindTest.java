@@ -10,8 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import hello.core.member.MemberRepositrory;
-import hello.core.member.MemoryMemberRepositrory;
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
 
 class ApplicationContextSameBeanFindTest {
 
@@ -23,20 +23,20 @@ class ApplicationContextSameBeanFindTest {
         //오류가 발생해야 성공하도록 설정하였다. 
         // MemberRepositrory bean = ac.getBean(MemberRepositrory.class);
         org.junit.jupiter.api.Assertions.assertThrows(NoUniqueBeanDefinitionException.class,
-         () -> ac.getBean(MemberRepositrory.class));
+         () -> ac.getBean(MemberRepository.class));
     }
     
     @Test
     @DisplayName("타입으로 조회 시 같은 타입이 둘 이상 있으면, 빈 이름을 저장하면 된다.")
     void findBeanByName(){
-        MemberRepositrory memberRepositrory = ac.getBean("memberService1", MemberRepositrory.class);
-        Assertions.assertThat(memberRepositrory).isInstanceOf(MemberRepositrory.class);
+        MemberRepository memberRepositrory = ac.getBean("memberService1", MemberRepository.class);
+        Assertions.assertThat(memberRepositrory).isInstanceOf(MemberRepository.class);
     }
 
     @Test
     @DisplayName("특정 타입을 모두 조회하기")
     void findAllBeanByType(){
-        Map<String, MemberRepositrory> beansOfType = ac.getBeansOfType(MemberRepositrory.class);
+        Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.class);
         for (String key : beansOfType.keySet()) {
             System.out.println("key: "+key+"/ value: "+beansOfType.get(key));
         }
@@ -48,13 +48,13 @@ class ApplicationContextSameBeanFindTest {
     static class SameBeanConfig {
         
         @Bean
-        public MemberRepositrory memberService1(){
-            return new MemoryMemberRepositrory();
+        public MemberRepository memberService1(){
+            return new MemoryMemberRepository();
         }
 
         @Bean
-        public MemberRepositrory memberService2(){
-            return new MemoryMemberRepositrory();
+        public MemberRepository memberService2(){
+            return new MemoryMemberRepository();
         }
     }
 

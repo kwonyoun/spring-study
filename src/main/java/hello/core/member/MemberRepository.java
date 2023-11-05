@@ -1,6 +1,6 @@
 package hello.core.member;
 
-public interface MemberRepositrory {
+public interface MemberRepository {
     void save(Member member);
     Member findById(Long MemberId);
 }
