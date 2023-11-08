@@ -15,19 +15,34 @@ import hello.core.order.OrderServiceImpl;
 @Configuration
 public class AppConfig {
 
+    //출력 결과 : 모두 1번만 호출됨
+    //call AppConfig.memberService
+    //call AppConfig.memberRepository
+    //call AppConfig.orderService
+
+    //@configuration 제거시 
+    //call AppConfig.memberService
+    //call AppConfig.memberRepository
+    //call AppConfig.memberRepository
+    //call AppConfig.orderService
+    //call AppConfig.memberRepository
+
     @Bean
     public MemberService memberService(){
-        return new MemberServiceImpl(memberRepositrory());
+        System.out.println("call AppConfig.memberService");
+        return new MemberServiceImpl(memberRepository());
     } 
 
     @Bean
-    public MemberRepository memberRepositrory(){
+    public MemberRepository memberRepository(){
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
     
     @Bean
     public OrderService orderService(){
-        return new OrderServiceImpl(memberRepositrory(), discountPolicy());
+        System.out.println("call AppConfig.orderService");
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     @Bean
